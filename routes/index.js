@@ -1,13 +1,16 @@
 const path = require("path");
 const router = require("express").Router();
-const apiRoutes = require("./api");
+const axios = require("axios");
+//const apiRoutes = require("./api");
 
-//route when api is present
-router.use("/api", apiRoutes);
+router.get("/books", (req, res) => {
+    axios
+        .get("https://www.googleapis.com/books/v1/volumes", /*{params: req.query}*/ )
+        .then(({ data: {results}}) => res.json(results))
+        .catch(err => res.status(422).json(err));
 
-//route if no api is found
-router.use(function(req, res) {
-    res.sendFile(path.join(_dirname), "./client/build/index.html");
-});
+        
+    console.log(results);
+})
 
 module.exports = router;

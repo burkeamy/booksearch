@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3004;
 const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const axios = require("axios");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,9 +18,9 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 //connectiong MongoDB
-mongoose.connect(process.env.NOMGODB_URI || "mongodb://localhost/booklist")
+mongoose.connect(process.env.NOMGODB_URI || "mongodb://localhost/googlebooks")
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 app.listen(PORT, () => {
