@@ -15,13 +15,15 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // defining api routes
-app.use(routes);
+//app.use("/api");
 
-//connectiong MongoDB
-mongoose.connect(process.env.NOMGODB_URI || "mongodb://localhost/googlebooks")
+//sending requests to the React app, defining routes before they run
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
+
+//connectiong MongoDB
+mongoose.connect(process.env.NOMGODB_URI || "mongodb://localhost/googlebooks")
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
