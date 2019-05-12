@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // defining api routes
-//app.use("/api");
+app.use("/api", routes);
 
 //sending requests to the React app, defining routes before they run
 app.get("*", (req, res) => {
