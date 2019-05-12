@@ -1,5 +1,7 @@
 const db = require("../models");
 
+
+//this is all the info to save and retrieve stuff from the database
 module.exports = {
     findAll: function(req, res) {
         db.Book
